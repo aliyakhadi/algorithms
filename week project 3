@@ -1,0 +1,28 @@
+class Solution:
+
+
+  def __init__(self):
+    pass
+
+  # @param A : list of integers (binary array)
+  # @param B : integer (maximum allowed changes)
+  # @return an integer (length of longest subsegment of '1's)
+  def solve(self, A, B):
+
+
+    n = len(A)
+    left, right, count_zeros, max_length = 0, 0, 0, 0
+
+    while right < n:
+      if A[right] == 0:
+        count_zeros += 1
+
+      while count_zeros > B:
+        if A[left] == 0:
+          count_zeros -= 1
+        left += 1
+
+      max_length = max(max_length, right - left + 1)
+      right += 1
+
+    return max_length
